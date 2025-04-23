@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="seltest.herukoapp.tests.JQueryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-03-17T14:11:04" hostname="DESKTOP-UREGP5M" time="2.063">
-  <properties/>
-  <testcase name="jqueryCheck()" classname="seltest.herukoapp.tests.JQueryTest" time="2.063"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Mar 17, 2025 3:11:04 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-WARNING: Unable to find an exact match for CDP version 134, returning the closest version; found: 133; Please update to a Selenium version that supports CDP version 134
-]]></system-err>
-</testsuite>
