@@ -3,20 +3,20 @@ package seltest.herukoapp.tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
-import seltest.herukoapp.pages.AddRemoveElements;
 import seltest.herukoapp.pages.DragDrop;
+import seltest.herukoapp.webdriver.BaseHerukoTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DragDropTest extends InitiateSeleniumTest{
+public class DragDropTest extends BaseHerukoTest {
 
     DragDrop dragDropPage;
 
+    /**
+     * Testing link and header to the page
+     */
     @BeforeEach
     public void goToPage(){
-        /**
-         * Testing link and header to the page
-         */
         mainPage.mainPageStart();
         mainPage.goToLesson("Drag and Drop");
 
@@ -27,11 +27,11 @@ public class DragDropTest extends InitiateSeleniumTest{
         assertEquals("Drag and Drop", header);
     }
 
+    /**
+     * Test Drag n Drop between two areas
+     */
     @Test
     public void checkDragDrop(){
-        /**
-         * Test Drag n Drop between two areas
-         */
         WebElement firstArea = dragDropPage.getAreaA();
         WebElement secondArea = dragDropPage.getAreaB();
         assertEquals("A",firstArea.getText(),

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import seltest.herukoapp.pages.ChallengeDOM;
+import seltest.herukoapp.webdriver.BaseHerukoTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,14 +16,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ChallengeDOMTest extends InitiateSeleniumTest{
+public class ChallengeDOMTest extends BaseHerukoTest {
 
     ChallengeDOM challengeDOMPage;
+
+    /**
+     * Silly test to check header
+     */
     @BeforeAll
     public void goToPage(){
-        /**
-         * Silly test to check header
-         */
         mainPage.mainPageStart();
         mainPage.goToLesson("Challenging DOM");
 
@@ -32,13 +34,13 @@ public class ChallengeDOMTest extends InitiateSeleniumTest{
         assertEquals("Challenging DOM", header);
     }
 
+    /**
+     * Test clicks on Blue button and checks, that button text changed
+     */
     @Test
     public void checkBlueButton() throws InterruptedException {
-        /**
-         * Test clicks on Blue button and checks, that button text changed
-         */
-
         String originalButtonText;
+
         Thread.sleep(500);
         WebElement blueButton = challengeDOMPage.getBlueButton();
         originalButtonText = blueButton.getText();
@@ -50,11 +52,11 @@ public class ChallengeDOMTest extends InitiateSeleniumTest{
 
     }
 
+    /**
+     * Test clicks on Red button and checks, that ID for button changed
+     */
     @Test
     public void checkRedButton() throws InterruptedException {
-        /**
-         * Test clicks on Red button and checks, that ID for button changed
-         */
         String originalButtonId;
 
         Thread.sleep(500);
@@ -67,11 +69,11 @@ public class ChallengeDOMTest extends InitiateSeleniumTest{
                 "Text on Red Button not changed.");
     }
 
+    /**
+     * Test clicks on Green button and checks, that button text changed
+     */
     @Test
     public void checkGreenButton() throws InterruptedException {
-        /**
-         * Test clicks on Green button and checks, that button text changed
-         */
         String originalButtonText;
 
         Thread.sleep(500);
@@ -84,11 +86,11 @@ public class ChallengeDOMTest extends InitiateSeleniumTest{
                 "Text on Green Button not changed.");
     }
 
+    /**
+     * Verify table headers
+     */
     @Test
     public void checkTableHeader(){
-        /**
-         * Verify table headers
-         */
         List<String> headerNames = Arrays.asList("Lorem","Ipsum","Dolor","Sit","Amet","Diceret","Action");
 
         List<WebElement> headers = challengeDOMPage.getTableHeaders();
@@ -101,11 +103,11 @@ public class ChallengeDOMTest extends InitiateSeleniumTest{
         }
     }
 
+    /**
+     * Verify last table row
+     */
     @Test
     public void checkLastRow(){
-        /**
-         * Verify last table row
-         */
         List<String> cellValues = Arrays.asList("Iuvaret9","Apeirian9","Adipisci9","Definiebas9","Consequuntur9","Phaedrum9");
         List<WebElement> cells = challengeDOMPage.getLastTableRowElements();
 
@@ -121,11 +123,11 @@ public class ChallengeDOMTest extends InitiateSeleniumTest{
         deletelink.click();
     }
 
+    /**
+     * Verify that answer changes on refresh
+     */
     @Test
     public void checkCanvasUpdate(){
-        /**
-         * Verify that answer changes on refresh
-         */
         String currentAnswer = challengeDOMPage.getAnswerValue();
         driver.navigate().refresh();
 

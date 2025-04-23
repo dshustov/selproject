@@ -3,22 +3,21 @@ package seltest.herukoapp.tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.testng.annotations.BeforeTest;
-import seltest.herukoapp.pages.AddRemoveElements;
 import seltest.herukoapp.pages.Checkboxes;
+import seltest.herukoapp.webdriver.BaseHerukoTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CheckboxesTest extends InitiateSeleniumTest{
+public class CheckboxesTest extends BaseHerukoTest {
 
     Checkboxes checkboxesPage;
 
+    /**
+     * Testing link and header to the page
+     */
     @BeforeEach
     public void goToPage(){
-        /**
-         * Testing link and header to the page
-         */
         mainPage.mainPageStart();
         mainPage.goToLesson("Checkboxes");
 
@@ -29,11 +28,11 @@ public class CheckboxesTest extends InitiateSeleniumTest{
         assertEquals("Checkboxes", header);
     }
 
+    /**
+     * Simple test to check checkboxes
+     */
     @Test
     public void checkboxesLogic(){
-        /**
-         * Simple test to check checkboxes
-         */
         assertFalse(checkboxesPage.isCheckbox1On(),
                 "Checkbox state is wrong.");
         assertTrue(checkboxesPage.isCheckbox2On(),

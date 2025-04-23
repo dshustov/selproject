@@ -4,14 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import seltest.herukoapp.webdriver.BaseHerukoTest;
 
 
 import java.awt.*;
-import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FramesTest extends InitiateSeleniumTest{
+public class FramesTest extends BaseHerukoTest {
 
     By framePageHeader = By.xpath("//*[@id=\"content\"]/div/h3");
     By nestedFrameslink = By.xpath("//*[@id=\"content\"]/div/ul/li[1]/a");
@@ -27,19 +27,19 @@ public class FramesTest extends InitiateSeleniumTest{
     By iFrameText = By.xpath("//*[@id=\"tinymce\"]/p");
 
 
+    /**
+     * Testing link and header to the page
+     */
     @BeforeEach
     public void goToPage() throws AWTException {
-        /**
-         * Testing link and header to the page
-         */
         mainPage.mainPageStart();
     }
 
+    /**
+     * Simple test of frames
+     */
     @Test
     public void checkFrames() {
-        /**
-         * Simple test of frames
-         */
         mainPage.goToLesson("Frames");
         String header = driver.findElement(framePageHeader).getText();
         assertEquals("Frames", header,
@@ -65,11 +65,11 @@ public class FramesTest extends InitiateSeleniumTest{
         assertEquals("BOTTOM",driver.findElement(bottomFrameText).getText());
     }
 
+    /**
+     * checking iFrames
+     */
     @Test
     public void checkIframe(){
-        /**
-         * checking iFrames
-         */
         mainPage.goToLesson("Frames");
         String header = driver.findElement(framePageHeader).getText();
         assertEquals("Frames", header,

@@ -4,19 +4,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import seltest.herukoapp.webdriver.BaseHerukoTest;
 
-import java.awt.*;
 import java.io.File;
-import java.nio.file.Paths;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class FilesTest extends InitiateSeleniumTest{
+public class FilesTest extends BaseHerukoTest {
 
     WebDriverWait wait;
     By downloadPageTitle = By.xpath("//*[@id=\"content\"]/div/h3");
@@ -27,21 +25,20 @@ public class FilesTest extends InitiateSeleniumTest{
     By uploadedTitle = By.xpath("//*[@id=\"content\"]/div/h3");
     By uploadedFileName = By.id("uploaded-files");
 
-
+    /**
+     * Testing link and header to the page
+     */
     @BeforeEach
     public void goToPage() {
-        /**
-         * Testing link and header to the page
-         */
         mainPage.mainPageStart();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
+    /**
+     * Checking file download with Selenium
+     */
     @Test
     public void checkFileDownload() throws InterruptedException {
-        /**
-         * Checking file download with Selenium
-         */
         mainPage.goToLesson("File Download");
 
         String header = driver.findElement(downloadPageTitle).getText();
@@ -58,18 +55,20 @@ public class FilesTest extends InitiateSeleniumTest{
         boolean fileSaved = isFileDownloaded(filePath);
         if(fileSaved){
             File file = new File(filePath);
-            file.delete();
+            if(!file.delete()){
+                fail("Can not delete: "+downloadFolder);
+            }
         }
         else{
             fail("File not saved into: "+downloadFolder);
         }
     }
 
+    /**
+     * Checking file upload with Selenium
+     */
     @Test
     public void checkUploadFile(){
-        /**
-         * Checking file upload with Selenium
-         */
         String testFileName = "Test.txt";
         mainPage.goToLesson("File Upload");
 

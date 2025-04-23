@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
@@ -30,7 +29,7 @@ public class MainPage {
         Properties defaultProps = new Properties();
 
         defaultProps.load(new FileInputStream(res.getFile()));
-        baseUrl = defaultProps.getProperty("baseUrl");
+        baseUrl = defaultProps.getProperty("baseURL");
     }
 
     public void goToLesson(String linkText){

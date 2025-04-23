@@ -5,26 +5,24 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import seltest.herukoapp.pages.AddRemoveElements;
 import seltest.herukoapp.pages.DynamicControls;
+import seltest.herukoapp.webdriver.BaseHerukoTest;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class DynamicControlsTest extends InitiateSeleniumTest{
+public class DynamicControlsTest extends BaseHerukoTest {
 
     DynamicControls dynamicControls;
     WebDriverWait wait;
 
+    /**
+     * Testing link and header to the page
+     */
     @BeforeEach
     public void goToPage(){
-        /**
-         * Testing link and header to the page
-         */
         mainPage.mainPageStart();
         mainPage.goToLesson("Dynamic Controls");
 
@@ -38,11 +36,11 @@ public class DynamicControlsTest extends InitiateSeleniumTest{
                 "Wrong page header.");
     }
 
+    /**
+     * Check logic of delete add checkbox, which appears in different places
+     */
     @Test
     public void checkAddRemoveButton() {
-        /**
-         * Check logic of delete add checkbox, which appears in different places
-         */
         WebElement checkbox = dynamicControls.getCheckbox();
         WebElement addRemoveButton = dynamicControls.getAddRemoveButton();
 
@@ -85,13 +83,13 @@ public class DynamicControlsTest extends InitiateSeleniumTest{
         WebElement eDButton = dynamicControls.getEnableDisableButton();
         WebElement textBox = dynamicControls.getTextBox();
 
-        assertEquals(false,textBox.isEnabled(),
+        assertFalse(textBox.isEnabled(),
                 "Text box is enabled.");
 
         eDButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(eDButton));
 
-        assertEquals(true,textBox.isEnabled(),
+        assertTrue(textBox.isEnabled(),
                 "Text box is disabled.");
     }
 

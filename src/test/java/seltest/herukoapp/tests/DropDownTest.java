@@ -7,20 +7,20 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import seltest.herukoapp.pages.DropDown;
+import seltest.herukoapp.webdriver.BaseHerukoTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class DropDownTest extends InitiateSeleniumTest{
+public class DropDownTest extends BaseHerukoTest {
 
     DropDown dropDownPage;
+    /**
+     * Testing link and header to the page
+     */
     @BeforeEach
     public void goToPage(){
-        /**
-         * Testing link and header to the page
-         */
         mainPage.mainPageStart();
         mainPage.goToLesson("Dropdown");
 
@@ -31,14 +31,14 @@ public class DropDownTest extends InitiateSeleniumTest{
         assertEquals("Dropdown List", header);
     }
 
+    /**
+     * Simple test for dropdown
+     */
     @ParameterizedTest()
     @CsvSource({"Please select an option, true, true",
                 "Option 1, false, false",
                 "Option 2, false, false"})
     public void checkInitialDropdownState(String text, boolean disabled, boolean selected){
-        /**
-         * Simple test for dropdown
-         */
         List<WebElement> options = dropDownPage.getOptions();
 
         assertEquals(3, options.size(), "Wrong amount of options");
@@ -57,31 +57,31 @@ public class DropDownTest extends InitiateSeleniumTest{
         }
     }
 
+    /**
+     * check dropdown interaction
+     */
     @Test()
     public void checkDropdownBehavour(){
-        /**
-         * check dropdown interaction
-         */
         dropDownPage.selectByValue("1");
-        assertEquals(true, isAttributePresent(dropDownPage.getOption1(), "selected"),
+        assertTrue(isAttributePresent(dropDownPage.getOption1(), "selected"),
                 "Option is not selected");
-        assertEquals(false, isAttributePresent(dropDownPage.getDefaultOption(), "selected"),
+        assertFalse(isAttributePresent(dropDownPage.getDefaultOption(), "selected"),
                 "Option stills elected");
 
         dropDownPage.selectByText("Option 2");
-        assertEquals(true, isAttributePresent(dropDownPage.getOption2(), "selected"),
+        assertTrue(isAttributePresent(dropDownPage.getOption2(), "selected"),
                 "Option is not selected");
 
         dropDownPage.selectByInd(1);
-        assertEquals(true, isAttributePresent(dropDownPage.getOption1(), "selected"),
+        assertTrue(isAttributePresent(dropDownPage.getOption1(), "selected"),
                 "Option is not selected");
     }
 
+    /**
+     * Checking some restricted actions
+     */
     @Test
     public void checkNegativeScnarios(){
-        /**
-         * Checking some restricted actions
-         */
         try {
             dropDownPage.selectByInd(0);
             fail("Disabled option can be selected");

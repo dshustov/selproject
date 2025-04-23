@@ -5,10 +5,9 @@ import org.openqa.selenium.By;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.openqa.selenium.WebElement;
-import seltest.herukoapp.pages.MainPage;
+import seltest.herukoapp.webdriver.BaseHerukoTest;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class MainPageTest extends InitiateSeleniumTest{
+public class MainPageTest extends BaseHerukoTest {
 
     @BeforeEach
     public void openStartPage(){
@@ -27,7 +26,7 @@ public class MainPageTest extends InitiateSeleniumTest{
         mainPage.goToLesson("A/B Testing");
         WebElement header = driver.findElement(By.xpath("//*[@id=\"content\"]/div/h3"));
         assertEquals("A/B Test Variation 1", header.getText(),
-                "Wrong page header.");
+                "Wrong page header. And this is intended!");
     }
 
 }
