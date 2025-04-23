@@ -4,16 +4,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import seltest.herukoapp.webdriver.BaseHerukoTest;
 
 import java.awt.*;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PopupTest extends InitiateSeleniumTest{
+public class PopupTest extends BaseHerukoTest {
 
     WebDriverWait wait;
  //   Actions action;
@@ -27,22 +27,22 @@ public class PopupTest extends InitiateSeleniumTest{
     By intentPageCloseButton = By.xpath("//*[@id=\"ouibounce-modal\"]/div[2]/div[3]/p");
     By intentPageModalWindow = By.xpath("//*[@id=\"ouibounce-modal\"]");
 
+    /**
+     * Testing link and header to the page
+     */
     @BeforeEach
     public void goToPage() throws AWTException {
-        /**
-         * Testing link and header to the page
-         */
         mainPage.mainPageStart();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
   //      action = new Actions(driver);
         robot = new Robot();
     }
 
+    /**
+     * Check dealing with popup window on page opening
+     */
     @Test
-    public void checkEntryAd() throws InterruptedException {
-        /**
-         * Check dealing with popup window on page opening
-         */
+    public void checkEntryAd() {
         mainPage.goToLesson("Entry Ad");
         String header = driver.findElement(adPageHeader).getText();
         assertEquals("Entry Ad", header,
@@ -66,11 +66,11 @@ public class PopupTest extends InitiateSeleniumTest{
                 "Modal window was not closed");
     }
 
+    /**
+     * Test for plzing around with exit intent page and modal window
+     */
     @Test
     public void checkExitIntent() throws InterruptedException {
-        /**
-         * Test for plzing around with exit intent page and modal window
-         */
         mainPage.goToLesson("Exit Intent");
         String header = driver.findElement(intentPageHeader).getText();
         assertEquals("Exit Intent", header,
