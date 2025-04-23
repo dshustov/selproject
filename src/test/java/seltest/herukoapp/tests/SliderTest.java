@@ -6,33 +6,35 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import seltest.herukoapp.webdriver.BaseHerukoTest;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class SliderTest extends BaseHerukoTest {
+public class SliderTest extends InitiateSeleniumTest{
     Actions action;
 
     By sliderPageHeader = By.xpath("//*[@id=\"content\"]/div/h3");
 
     By sliderPath = By.xpath("//*[@id=\"content\"]/div/div/input");
 
-    /**
-     * Testing link and header to the page
-     */
     @BeforeEach
     public void goToPage() throws AWTException {
+        /**
+         * Testing link and header to the page
+         */
         mainPage.mainPageStart();
         action = new Actions(driver);
     }
 
-    /**
-     * Moving slider
-     */
     @Test
     public void checkSlider() {
+        /**
+         * Moving slider
+         */
         mainPage.goToLesson("Horizontal Slider");
         String header = driver.findElement(sliderPageHeader).getText();
         assertEquals("Horizontal Slider", header,
